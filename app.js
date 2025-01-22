@@ -1,0 +1,23 @@
+const express = require("express");
+const app = express();
+const http = require("http");
+const fs = require("fs");
+const { hostRouter } = require("./routers/hostRouter");
+const { storeRouter } = require("./routers/storeRouter");
+const bodyparser = require("body-parser");
+const rootDir = require("./util/path-util");
+const path = require("path");
+//const router = express.router();
+app.use(express.static(path.join(rootDir, "public")));
+app.set("view engine", "ejs");
+app.set("views", "views");
+app.use(bodyparser.urlencoded({ extended: true }));
+app.use(storeRouter);
+app.use("/host", hostRouter);
+const errorController = require("./controllers/errorcontroller");
+const server = http.createServer(app);
+const port = 3003;
+app.use(errorController.get404);
+server.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});
