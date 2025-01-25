@@ -1,3 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* public/styles/input.css */
+@import "tailwindcss/preflight"; /* Replaces @tailwind base */
+@tailwind utilities; /* Includes utility classes */
+@import "tailwindcss/components"; /* Replaces @tailwind components */
+@import "tailwindcss/utilities"; /* Replaces @tailwind utilities */

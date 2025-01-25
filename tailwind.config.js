@@ -7,9 +7,13 @@
 //     plugins: [],
 // };
 module.exports = {
-    content: ["./views/**/*.ejs"],
-    theme: {
-        extend: {},
-    },
-    plugins: [],
+  content: [
+    "./public/**/*.html", // Ensure this path includes your HTML files
+    "./views/**/*.ejs", // Add your views or template files
+    "./src/**/*.js",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
 };

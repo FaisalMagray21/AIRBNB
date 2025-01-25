@@ -12,9 +12,15 @@ module.exports = class Home {
     this.photourl = photourl;
   }
   save(callback) {
-    this.identify = Math.random().toString();
     Home.fetchAll((registerhomes) => {
-      registerhomes.push(this);
+      if (this.identify) {
+        const registeredhomes = registerhomes.map((home) => {
+          home.identify !== this.identify ? home : this;
+        });
+      } else {
+        this.identify = Math.random().toString();
+        registerhomes.push(this);
+      }
       fs.writeFile(homefilepath, JSON.stringify(registerhomes), callback);
     });
   }
